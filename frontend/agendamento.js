@@ -1,22 +1,28 @@
+var listaAgencias;
+var pos=0;
+
 function carregaAgencias(){
     fetch("http://localhost:8088/agencias")
         .then(res => res.json())
-        .then(listaAgencias => preencheCombobox(listaAgencias));
+        .then(lista => preencheCombobox(lista));
 
 }
 
 
-function preencheCombobox(listaAgencias){
-    var templateSelect = `<select class="form-group" id="selectAgencia"> {{OPCOES}} </select>`;
+function preencheCombobox(lista){
+    listaAgencias=lista;
+    var templateSelect = "<select class='form-control' id='txtAgencia' onchange='montaHorarios()'> {{OPCOES}} </select>";
     var templateOption = `<option value="{{VALOR}}"> {{NOME}} </option>`;
 
     var opcoes="";
-    for (i=0;i<listaAgencias.length;i++){
-        var ag = listaAgencias[i];
+    for (i=0;i<lista.length;i++){
+        var ag = lista[i];
         opcoes+=templateOption.replace("{{VALOR}}",ag.id).replace("{{NOME}}",ag.nome);
     }
     document.getElementById("Agencia").innerHTML = templateSelect.replace("{{OPCOES}}",opcoes);
-    console.log(opcoes)
+    //console.log(opcoes)
+
+    montaHorarios();
 }
 
 function cadastraAgendamento(){
@@ -71,4 +77,43 @@ function trataResposta(res){
 function geraProtocolo(agendamento){
     alert("Agendamento Concluido. Numero do Protocolo "+agendamento.numSeq);
 
+}
+
+function montaHorarios(){
+    pos = document.getElementById("txtAgencia").value;
+    var horarioSelect=`<select class="form-control" id="txtHoraInicio" onchange="mudaTermino()"> {{OPCOES}} </select>`;
+    var horaOption   =`<option value="{{VALORHORA}}"> {{HORA}} </option>`;
+
+    var agAtual = listaAgencias[pos];
+
+    var opcoesHoras="";
+    for (hora=agAtual.horaInicio; hora < agAtual.horaFim ; hora++){
+        var strHora = hora+":00";
+        opcoesHoras = opcoesHoras+horaOption.replace("{{VALORHORA}}",strHora)
+                                            .replace("{{HORA}}", strHora);
+        strHora = hora+":30";
+        opcoesHoras = opcoesHoras+horaOption.replace("{{VALORHORA}}",strHora)
+                                            .replace("{{HORA}}", strHora);
+    }
+    var novoSelect = horarioSelect.replace("{{OPCOES}}", opcoesHoras);
+    document.getElementById("HoraInicio").innerHTML = novoSelect;
+
+    mudaTermino();
+}
+
+function mudaTermino(){
+    var horaInicio = document.getElementById("txtHoraInicio").value;
+    var hora = horaInicio.substr(0,2);
+    var minuto = horaInicio.substr(3,2);
+
+    var minutoFim;
+    var horaFim = hora;
+    if (minuto == '00'){
+        minutoFim = ':30';
+    }
+    else{
+        horaFim = parseInt(hora)+1;
+        minutoFim = ':00';
+    }
+    document.getElementById("HoraFim").value = horaFim+minutoFim;
 }

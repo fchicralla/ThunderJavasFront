@@ -97,7 +97,7 @@ function gerarRelatorio(){
                 .then(listaAgendamentos => preencheRelatorio(listaAgendamentos));
             break;
         case 7:
-            fetch("http://localhost:8088/agendamentos/")
+            fetch("http://localhost:8088/agendamentos/filtrarporagenciaedataecliente?agencia=" + txtagencia + "&dataAgendamento=" + txtdata + "&nomecli=" + txtcliente)
                 .then(res => res.json())
                 .then(listaAgendamentos => preencheRelatorio(listaAgendamentos));
             break;

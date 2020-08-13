@@ -25,20 +25,19 @@
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="DataAgendamento">Data</label>
-                <input type="date" class="form-control" id="DataAgendamento">
+                <input type="date" class="form-control" id="DataAgendamento" min="2020-08-15">
               </div>
               <div class="form-group col-md-6">
                 <label for="Agencia">Agencia</label>
-                <select id="Agencia" class="form-control">
-                  <option selected>Choose...</option>
-                  <option>...</option>
-                </select>
+                <div id="Agencia"></div>
               </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-2">
                   <label for="HoraInicio">Hora Inicio</label>
-                  <input type="text" class="form-control" id="HoraInicio">
+                  <div id="HoraInicio">
+                    Hora inicio
+                  </div>
                 </div>
                 <div class="form-group col-md-2">
                   <label for="HoraFim">Hora Fim</label>

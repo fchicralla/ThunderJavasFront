@@ -28,7 +28,7 @@ function carregaAgencias(){
 }
 
 function preencheCombobox(listaAgencias){
-    var templateSelect = `<select class="form-group" id="selectAgencia"> {{OPCOES}} </select>`;
+    var templateSelect = `<select class="form-group" id="txtAgencia"> {{OPCOES}} </select>`;
     var templateOption = `<option value="{{VALOR}}"> {{NOME}} </option>`;
 
     var opcoes="";
@@ -37,7 +37,7 @@ function preencheCombobox(listaAgencias){
         opcoes+=templateOption.replace("{{VALOR}}",ag.id).replace("{{NOME}}",ag.nome);
     }
     document.getElementById("selectDasAgencias").innerHTML = templateSelect.replace("{{OPCOES}}",opcoes);
-    console.log(opcoes)
+    //console.log(opcoes)
 }
 
 function gerarRelatorio(){
@@ -54,11 +54,12 @@ function gerarRelatorio(){
         combinacao+=4;//document.getElementById("selectCliente").nodeValue;
     }
 
-    console.log("Combinacao  = "+combinacao);
-    //document.getElementById("selectCliente");
-    //document.getElementById("selectCliente");
-    //document.getElementById("selectCliente");
-
+    //console.log("Combinacao  = "+combinacao);
+    var txtagencia=document.getElementById("txtAgencia").value;
+    console.log(txtagencia);
+    var txtcliente=document.getElementById("nomeCliente").value;
+    var txtdata=document.getElementById("dateAgendamento").value;
+    
     switch (combinacao) {
         case 0:
             fetch("http://localhost:8088/agendamentos/todos")
@@ -66,32 +67,32 @@ function gerarRelatorio(){
                 .then(listaAgendamentos => preencheRelatorio(listaAgendamentos));
             break;
         case 1:
-            fetch("http://localhost:8088/agendamentos/")
+            fetch("http://localhost:8088/agendamentos/filtrarporagencia?agencia=" + txtagencia)
                 .then(res => res.json())
                 .then(listaAgendamentos => preencheRelatorio(listaAgendamentos));
             break;
         case 2:
-            fetch("http://localhost:8088/agendamentos/filtrarpordataagendamento?dataAgendamento=14/08/2020")
+            fetch("http://localhost:8088/agendamentos/filtrarpordataagendamento?dataAgendamento=" + txtdata)
                 .then(res => res.json())
                 .then(listaAgendamentos => preencheRelatorio(listaAgendamentos));
             break;
         case 3:
-            fetch("http://localhost:8088/agendamentos/filtrarporagenciaedata?agencia=9&dataAgendamento=14/08/2020")
+            fetch("http://localhost:8088/agendamentos/filtrarporagenciaedata?agencia=" + txtagencia + "&dataAgendamento=" + txtdata)
                 .then(res => res.json())
                 .then(listaAgendamentos => preencheRelatorio(listaAgendamentos));
             break;
         case 4:
-            fetch("http://localhost:8088/agendamentos/filtrarporcliente")
+            fetch("http://localhost:8088/agendamentos/filtrarporcliente?nomecli=" + txtcliente)
                 .then(res => res.json())
                 .then(listaAgendamentos => preencheRelatorio(listaAgendamentos));
             break;
         case 5:
-            fetch("http://localhost:8088/agendamentos/filtrarporclienteeagencia?nomecli=Professor&agencia=9")
+            fetch("http://localhost:8088/agendamentos/filtrarporclienteeagencia?nomecli=" + txtcliente + "&agencia=" + txtagencia)
                 .then(res => res.json())
                 .then(listaAgendamentos => preencheRelatorio(listaAgendamentos));
             break;
         case 6:
-            fetch("http://localhost:8088/agendamentos/filtrarporclienteedata?nomecli=Professor&dataAgendamento=14/08/2020")
+            fetch("http://localhost:8088/agendamentos/filtrarporclienteedata?nomecli=" + txtcliente + "&dataAgendamento=" + txtdata)
                 .then(res => res.json())
                 .then(listaAgendamentos => preencheRelatorio(listaAgendamentos));
             break;
@@ -112,7 +113,7 @@ function salvarLista(objeto){
 }
 
 function preencheRelatorio(listaAgendamentos){
-    console.log(listaAgendamentos);
+    //console.log(listaAgendamentos);
     var templateTable = `<table class="table" id="tabelaAgendamentos"> 
                             <thead> 
                                 {{TABLE_HEADER}} 
@@ -157,7 +158,7 @@ function preencheRelatorio(listaAgendamentos){
                                 .replace("{{AGENCIA}}",agend.agencia.nome);
     }
     var tableFinal=templateTable.replace("{{TABLE_HEADER}}",tableHeader).replace("{{TABLE_BODY}}",tableBody);
-    console.log(tableFinal);
+    //console.log(tableFinal);
     document.getElementById("relatorio").innerHTML = tableFinal;
     salvarLista(listaAgendamentos);
 }

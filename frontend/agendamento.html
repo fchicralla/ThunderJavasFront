@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="stylesheet" href="agendamento.css">
+        <script type="text/javascript" src="agendamento.js"></script>
+        <title> ISIDROCORP&reg | Login </title>
+
+    </head>
+
+    <body onload="carregaAgencias()">
+        
+        <div class="container">
+            <div class="form-group">
+              <label for="ClienteNome">Nome</label>
+              <input type="text" class="form-control" id="ClienteNome">
+            </div>
+            <div class="form-group">
+              <label for="ClienteEmail">Email</label>
+              <input type="email" class="form-control" id="ClienteEmail" placeholder="email@email.com">
+            </div>
+            <div class="form-group">
+              <label for="ClienteCelular">Celular/Whatsapp</label>
+              <input type="text" class="form-control" id="ClienteCelular" placeholder="(11) 98765-4321">
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="DataAgendamento">Data</label>
+                <input type="date" class="form-control" id="DataAgendamento">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="Agencia">Agencia</label>
+                <select id="Agencia" class="form-control">
+                  <option selected>Choose...</option>
+                  <option>...</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                  <label for="HoraInicio">Hora Inicio</label>
+                  <input type="text" class="form-control" id="HoraInicio">
+                </div>
+                <div class="form-group col-md-2">
+                  <label for="HoraFim">Hora Fim</label>
+                  <input type="text" class="form-control" id="HoraFim" readonly>
+                </div>
+              </div>
+            <div class="form-group">
+                <label for="Observacao">Observacao</label>
+                <input type="text" class="form-control" id="Observacao">
+            </div>
+            <button type="submit" class="btn btn-primary" onclick="cadastraAgendamento()">Cadastrar</button>
+
+        </div>
+        <div id="msgERRO"></div>
+
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    </body>
+</html>

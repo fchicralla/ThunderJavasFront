@@ -70,7 +70,8 @@ function trataResposta(res){
         res.json().then(agendamento => geraProtocolo(agendamento));
     }
     else{
-        alert("Problemas ao enviar sua solicitacao - Entre em contato com SAC");
+        //alert("Problemas ao enviar sua solicitacao - Entre em contato com SAC");
+        document.getElementById("textboxinfo").innerHTML = "Problemas ao enviar sua solicitacao - Entre em contato com SAC";
     }
 }
 

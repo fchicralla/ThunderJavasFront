@@ -21,7 +21,7 @@ function carregarInfodoUsuario(){
 }
 
 function carregaAgencias(){
-    fetch("http://localhost:8088/agencias")
+    fetch("http://agendamento-pessoal.herokuapp.com/agencias")
         .then(res => res.json())
         .then(listaAgencias => preencheCombobox(listaAgencias));
 
@@ -62,42 +62,42 @@ function gerarRelatorio(){
     
     switch (combinacao) {
         case 0:
-            fetch("http://localhost:8088/agendamentos/todos")
+            fetch("http://agendamento-pessoal.herokuapp.com/agendamentos/todos")
                 .then(res => res.json())
                 .then(listaAgendamentos => preencheRelatorio(listaAgendamentos));
             break;
         case 1:
-            fetch("http://localhost:8088/agendamentos/filtrarporagencia?agencia=" + txtagencia)
+            fetch("http://agendamento-pessoal.herokuapp.com/agendamentos/filtrarporagencia?agencia=" + txtagencia)
                 .then(res => res.json())
                 .then(listaAgendamentos => preencheRelatorio(listaAgendamentos));
             break;
         case 2:
-            fetch("http://localhost:8088/agendamentos/filtrarpordataagendamento?dataAgendamento=" + txtdata)
+            fetch("http://agendamento-pessoal.herokuapp.com/agendamentos/filtrarpordataagendamento?dataAgendamento=" + txtdata)
                 .then(res => res.json())
                 .then(listaAgendamentos => preencheRelatorio(listaAgendamentos));
             break;
         case 3:
-            fetch("http://localhost:8088/agendamentos/filtrarporagenciaedata?agencia=" + txtagencia + "&dataAgendamento=" + txtdata)
+            fetch("http://agendamento-pessoal.herokuapp.com/agendamentos/filtrarporagenciaedata?agencia=" + txtagencia + "&dataAgendamento=" + txtdata)
                 .then(res => res.json())
                 .then(listaAgendamentos => preencheRelatorio(listaAgendamentos));
             break;
         case 4:
-            fetch("http://localhost:8088/agendamentos/filtrarporcliente?nomecli=" + txtcliente)
+            fetch("http://agendamento-pessoal.herokuapp.com/agendamentos/filtrarporcliente?nomecli=" + txtcliente)
                 .then(res => res.json())
                 .then(listaAgendamentos => preencheRelatorio(listaAgendamentos));
             break;
         case 5:
-            fetch("http://localhost:8088/agendamentos/filtrarporclienteeagencia?nomecli=" + txtcliente + "&agencia=" + txtagencia)
+            fetch("http://agendamento-pessoal.herokuapp.com/agendamentos/filtrarporclienteeagencia?nomecli=" + txtcliente + "&agencia=" + txtagencia)
                 .then(res => res.json())
                 .then(listaAgendamentos => preencheRelatorio(listaAgendamentos));
             break;
         case 6:
-            fetch("http://localhost:8088/agendamentos/filtrarporclienteedata?nomecli=" + txtcliente + "&dataAgendamento=" + txtdata)
+            fetch("http://agendamento-pessoal.herokuapp.com/agendamentos/filtrarporclienteedata?nomecli=" + txtcliente + "&dataAgendamento=" + txtdata)
                 .then(res => res.json())
                 .then(listaAgendamentos => preencheRelatorio(listaAgendamentos));
             break;
         case 7:
-            fetch("http://localhost:8088/agendamentos/filtrarporagenciaedataecliente?agencia=" + txtagencia + "&dataAgendamento=" + txtdata + "&nomecli=" + txtcliente)
+            fetch("http://agendamento-pessoal.herokuapp.com/agendamentos/filtrarporagenciaedataecliente?agencia=" + txtagencia + "&dataAgendamento=" + txtdata + "&nomecli=" + txtcliente)
                 .then(res => res.json())
                 .then(listaAgendamentos => preencheRelatorio(listaAgendamentos));
             break;

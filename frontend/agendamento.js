@@ -2,7 +2,7 @@ var listaAgencias;
 var pos=0;
 
 function carregaAgencias(){
-    fetch("http://localhost:8088/agencias")
+    fetch("http://agendamento-pessoal.herokuapp.com/agencias")
         .then(res => res.json())
         .then(lista => preencheCombobox(lista));
 
@@ -60,7 +60,7 @@ function cadastraAgendamento(){
         }
     };
 
-    fetch("http://localhost:8088/agendamentos/novo",cabecalho)
+    fetch("http://agendamento-pessoal.herokuapp.com/agendamentos/novo",cabecalho)
         .then(res => trataResposta(res))
         
 }

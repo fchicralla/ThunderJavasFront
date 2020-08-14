@@ -20,7 +20,7 @@ function autenticar(){
         }
     };
 
-    fetch("http://localhost:8088/login",cabecalho)
+    fetch("http://agendamento-pessoal.herokuapp.com/login",cabecalho)
         .then(res => trataResposta(res))
         
 }

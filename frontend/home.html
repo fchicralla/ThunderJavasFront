@@ -4,23 +4,28 @@
         <link rel="stylesheet" href="home.css">
         <script type="text/javascript" src=home.js></script>
 
+        <title> ITAU UNIBANCO | Consulta de agendamentos </title>
+
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
         <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
     </head>
 
     <body onload="carregarInfodoUsuario()">
-        <div id="logoutbutton">
-            <button type="button" class="btn btn-primary" onclick="deslogar()">Logout</button>
-        </div>
 
-        <div class="cointainer">
 
-            <div class="row" id="titulo">
-                <div class="col-12">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-1 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <img src="https://seeklogo.com/images/I/Itau-logo-082730CE51-seeklogo.com.png" width="60" class="center">
+                </div>
+                <div class="col-xl-11 col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <h3>Sistema de agendamento de Ag&ecircncias</h3>
                 </div>
+                <div class="col-xl-1 col-lg-2 col-md-2 col-sm-4 col-xs-4" id="logoutbutton">
+                    <button type="button" class="btn btn-primary" onclick="deslogar()">Logout</button>
+                </div>
             </div>
-
+            <hr>
             <div class="row">
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12" id="fotoUSER">
                     **Foto do usuario
@@ -33,10 +38,10 @@
             <div id="seletorDeRelatorio">
                 <label for="opcoes" id="tituloopcoes">Selecione Seu Relatorio</label>
                 <div class="row" id="opcoes">
-                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <div class="col-xl-6 col-lg-8 col-md-8 col-sm-12 col-xs-12">
                         <div class="form-group form-check">
                             <input type="checkbox" class="form-check-input" value="1" id="selectAgencia">
-                            <label class="form-check-label" for="selectAgencia">Agencia</label>
+                            <label class="form-check-label" for="selectAgencia">Ag&ecircncia</label>
                             <div id=selectDasAgencias></div>
                           </div>
                           <div class="form-group form-check">
@@ -50,23 +55,24 @@
                             <input type="text" id="nomeCliente" class="form-control">
                           </div>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <button type="button" class="btn btn-primary" onclick="gerarRelatorio()">Gerar</button>
+                    <div class="col-xl-2 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <button type="button" class="btn btn-primary" onclick="gerarRelatorio()">Gerar Relatorio</button>
                     </div>
+                    <div class="col-xl-4 col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <button type="button" class="btn btn-primary" id="csvButton" style="display:none;" onclick="download_table_as_csv()">Download CSV</button>
+                        <button type="button" class="btn btn-primary" id="pdfButton" style="display:none;" onclick="CreatePDFfromHTML()">Download PDF</button>
+                    </div>
+
                 </div>
+            </div>
+
+
+    
+            <div id="relatorio">
             </div>
         </div>
 
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
-            <button type="button" class="btn btn-primary" onclick="download_table_as_csv()">Download CSV</button>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
-            <button type="button" class="btn btn-primary" onclick="CreatePDFfromHTML()">Download PDF</button>
-        </div>
 
-        <div id="relatorio">
-            **O relatorio vai vir aqui
-        </div>
         
 
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

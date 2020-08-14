@@ -3,12 +3,15 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <link rel="stylesheet" href="agendamento.css">
         <script type="text/javascript" src="agendamento.js"></script>
-        <title> ISIDROCORP&reg | Login </title>
+        <title> ITAU UNIBANCO | Agendamento de atendimento em ag&ecircncias </title>
 
     </head>
 
     <body onload="carregaAgencias()">
-        
+        <div id="logoitau" class=center>
+          <img src="https://seeklogo.com/images/I/Itau-logo-082730CE51-seeklogo.com.png" width="70" class="center">
+          <h4 id="titulousuario">Agendamento de atendimento presencial em Ag&ecircncias</h4>
+        </div>
         <div class="container">
             <div class="form-group">
               <label for="ClienteNome">Nome</label>
@@ -28,7 +31,7 @@
                 <input type="date" class="form-control" id="DataAgendamento" min="2020-08-15">
               </div>
               <div class="form-group col-md-6">
-                <label for="Agencia">Agencia</label>
+                <label for="Agencia">Ag&ecircncia</label>
                 <div id="Agencia"></div>
               </div>
             </div>
@@ -45,10 +48,33 @@
                 </div>
               </div>
             <div class="form-group">
-                <label for="Observacao">Observacao</label>
+                <label for="Observacao">Observa&ccedil&atildeo</label>
                 <input type="text" class="form-control" id="Observacao">
             </div>
-            <button type="submit" class="btn btn-primary" onclick="cadastraAgendamento()">Cadastrar</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="cadastraAgendamento()">
+              Agendar atendimento
+            </button>
+            <!-- <button type="submit" class="btn btn-primary" onclick="cadastraAgendamento()">Agendar atendimento</button> -->
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Agendamento de atendimento</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body" id="textboxinfo">
+                    Problemas ao enviar sua solicitacao - Entre em contato com SAC.
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
 
         </div>
         <div id="msgERRO"></div>

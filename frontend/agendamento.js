@@ -31,9 +31,9 @@ function cadastraAgendamento(){
     var txtemailCliente = document.getElementById("ClienteEmail").value;
     var txtcelularCliente = document.getElementById("ClienteCelular").value;
     var txtdataAgendamento = document.getElementById("DataAgendamento").value;
-    var txthoraAgendamento = document.getElementById("HoraInicio").value;
+    var txthoraAgendamento = document.getElementById("txtHoraInicio").value;
     var txtobservacoes = document.getElementById("Observacao").value;
-    var txtagencia = document.getElementById("Agencia").value;
+    var txtagencia = document.getElementById("txtAgencia").value;
 
 
     //Body
@@ -75,12 +75,13 @@ function trataResposta(res){
 }
 
 function geraProtocolo(agendamento){
-    alert("Agendamento Concluido. Numero do Protocolo "+agendamento.numSeq);
-
+    //alert("Agendamento Conclu&iacutedo. Numero do Protocolo "+agendamento.numSeq + ". <br> N&atildeo se esque&ccedila de chegar com anteced&ecircncia.");
+    
+    document.getElementById("textboxinfo").innerHTML = "Agendamento Conclu&iacutedo. Numero do Protocolo "+agendamento.numSeq + ". <br> N&atildeo se esque&ccedila de chegar com anteced&ecircncia.";
 }
 
 function montaHorarios(){
-    pos = document.getElementById("txtAgencia").value;
+    pos = document.getElementById("txtAgencia").value -1;
     var horarioSelect=`<select class="form-control" id="txtHoraInicio" onchange="mudaTermino()"> {{OPCOES}} </select>`;
     var horaOption   =`<option value="{{VALORHORA}}"> {{HORA}} </option>`;
 

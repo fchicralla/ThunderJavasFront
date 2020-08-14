@@ -1,9 +1,9 @@
-var templateFoto = `<img src="{{LINKFOTO}}" width="100%">`;
-var templateInfo = `Nome: {{NOME}} <br>
-                    Email: {{EMAIL}} <br>
-                    Racf: {{RACF}} <br>
-                    Funcional: {{FUNCIONAL}} <br>
-                    Departamento: {{DEPTO}} <br>`
+var templateFoto = `<img src="{{LINKFOTO}}" width="200">`;
+var templateInfo = `<b>Nome:</b> {{NOME}} <br>
+                    <b>Email:</b> {{EMAIL}} <br>
+                    <b>Racf:</b> {{RACF}} <br>
+                    <b>Funcional:</b> {{FUNCIONAL}} <br>
+                    <b>Departamento:</b> {{DEPTO}} <br>`
 
 function carregarInfodoUsuario(){
     var usrSRT = localStorage.getItem("ScheduleUSER");
@@ -161,10 +161,18 @@ function preencheRelatorio(listaAgendamentos){
     //console.log(tableFinal);
     document.getElementById("relatorio").innerHTML = tableFinal;
     salvarLista(listaAgendamentos);
+
+    var x = document.getElementById("csvButton");
+    x.style.display = "inline";
+
+    var y = document.getElementById("pdfButton");
+    y.style.display = "inline";
+
 }
 
 function deslogar(){
     localStorage.removeItem("ScheduleUSER");
+    localStorage.removeItem("ReportJSON");
     window.location="home.html";
 }
 
@@ -200,7 +208,7 @@ function download_table_as_csv() {
 
 //Create PDf from HTML...
 function CreatePDFfromHTML() {
-    var HTML_Width = $(".html-content").width();
+    /*var HTML_Width = $(".html-content").width();
     var HTML_Height = $(".html-content").height();
     var top_left_margin = 15;
     var PDF_Width = HTML_Width + (top_left_margin * 2);
@@ -224,6 +232,15 @@ function CreatePDFfromHTML() {
         document.getElementById("relatorio").innerHTML, 1, 1, 
         { 'width': 10, 'elementHandlers': specialElementHandlers }, 
         function(){ doc.save('sample-file.pdf'); }
-    );
+    );*/
+
+    var printContents = document.getElementById("relatorio").innerHTML;
+    var originalContents = document.body.innerHTML;
+
+    document.body.innerHTML = printContents;
+
+    window.print();
+
+    document.body.innerHTML = originalContents;
 
 }
